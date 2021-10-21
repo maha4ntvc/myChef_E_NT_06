@@ -16,6 +16,12 @@ execute 'Tomcat automatically starts at boot' do
     not_if{File.exist?('/home/ubuntu/mytomcatstart')}
 end
 
+execute 'restart tomcat' do
+    command 'sudo systemctl restart tomcat'
+    action :run
+    only_if{File.exist?('/home/ubuntu/mytomcatstart')}
+end
+
 
 file '/home/ubuntu/mytomcatstart' do
     content 'content'
